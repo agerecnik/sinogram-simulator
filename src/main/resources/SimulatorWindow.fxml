@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Line?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.Integer?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sinogram.simulator.SimulatorWindowController"
+          prefHeight="600.0" prefWidth="800.0" >
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" spacing="10">
+        <VBox spacing="5">
+            <Button fx:id="openImageButton" text="Open" onAction="#openImage" prefWidth="120" />
+            <Button fx:id="startSinogramButton" text="Start Sinogram" onAction="#startSinogramSimulation" prefWidth="120" disable="true"/>
+            <Button fx:id="startReconButton" text="Start Recon" onAction="#startReconSimulation" prefWidth="120" disable="true" />
+        </VBox>
+        <VBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Max theta:" />
+                <ComboBox fx:id="maxThetaComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <Integer fx:value="180"/>
+                            <Integer fx:value="360"/>
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <Integer fx:value="180"/>
+                    </value>
+                </ComboBox>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Number of views (angular projections):" />
+                <ComboBox fx:id="numberOfViewsComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <Integer fx:value="60"/>
+                            <Integer fx:value="90"/>
+                            <Integer fx:value="120"/>
+                            <Integer fx:value="180"/>
+                            <Integer fx:value="240"/>
+                            <Integer fx:value="360"/>
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <Integer fx:value="180"/>
+                    </value>
+                </ComboBox>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Sinogram simulation delay:" />
+                <Spinner fx:id="delayInMillisSpinner" min="0" max="200" amountToStepBy="10" initialValue="0" />
+            </VBox>
+            <HBox spacing="5">
+                <Label fx:id="currentSinogramThetaLabel" text="Current sinogram theta:" />
+                <Label fx:id="currentSinogramThetaDisplay" />
+            </HBox>
+            <HBox spacing="5">
+                <Label fx:id="currentReconThetaLabel" text="Current recon theta:" />
+                <Label fx:id="currentReconThetaDisplay" />
+            </HBox>
+        </VBox>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+    </VBox>
+
+    <StackPane GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="TOP_CENTER">
+        <ImageView fx:id="loadedImageView" />
+        <Pane fx:id="positionLinePane">
+            <Label fx:id="sourceLabel" text="SOURCE" textFill="yellow" visible="false" />
+            <Line fx:id="sourcePositionLine" stroke="yellow" strokeWidth="5" visible="false" />
+            <Label fx:id="detectorLabel" text="DETECTOR" textFill="red" visible="false" />
+            <Line fx:id="detectorPositionLine" stroke="red" strokeWidth="5" visible="false" />
+        </Pane>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+    </StackPane>
+
+    <StackPane GridPane.rowIndex="0" GridPane.columnIndex="2" alignment="TOP_CENTER">
+        <ImageView fx:id="sinogramView" />
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+    </StackPane>
+
+    <StackPane GridPane.rowIndex="0" GridPane.columnIndex="3" alignment="TOP_CENTER">
+        <ImageView fx:id="reconImageView"/>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+    </StackPane>
+
+</GridPane>
