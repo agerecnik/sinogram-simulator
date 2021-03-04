@@ -8,7 +8,7 @@ Sinogram simulator is a Java implementation of Radon transform and back projecti
 
 Build:
 
-`$ mvn build`
+`$ mvn compile`
 
 Run:
 
